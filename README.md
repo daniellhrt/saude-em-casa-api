@@ -1,6 +1,6 @@
 # 🩺 Saúde em Casa API
 
-![Saúde em Casa](saude-em-casa-api/logo.png).
+<img src="logo.png" alt="Logo Saúde em Casa" width="250" />
 
 Uma plataforma de agendamento de serviços de enfermagem domiciliar, conectando clientes a profissionais de saúde de forma segura e eficiente, no estilo Uber/iFood.
 
