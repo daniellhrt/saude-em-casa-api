@@ -1,6 +1,6 @@
 # 🩺 Saúde em Casa API
 
-![Saúde em Casa](https://github.com/daniel-teixeira/saude-em-casa-api/blob/main/docs/logo.png?raw=true)
+![Saúde em Casa](http://googleusercontent.com/image_generation_content/39).
 
 Uma plataforma de agendamento de serviços de enfermagem domiciliar, conectando clientes a profissionais de saúde de forma segura e eficiente, no estilo Uber/iFood.
 
