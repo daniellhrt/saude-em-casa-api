@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS tb_servicos (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    complexidade VARCHAR(255) NOT NULL,
+    descricao TEXT NOT NULL,
+    nome VARCHAR(100) NOT NULL,
+    valor_base DECIMAL(10, 2) NOT NULL
+);
