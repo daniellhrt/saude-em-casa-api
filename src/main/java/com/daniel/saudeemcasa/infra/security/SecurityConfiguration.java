@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -33,14 +34,18 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
                         .requestMatchers(HttpMethod.GET, "/test/public").permitAll()
+                        .requestMatchers("/h2-console/**").permitAll()
 
                         // Outras regras de autorização, se necessário
-                        // .requestMatchers(HttpMethod.POST, "/servicos/disponiveis").hasRole("PROFISSIONAL")
+
 
                         // Qualquer outra requisição que não foi especificada acima,
                         // DEVE estar autenticada
                         .anyRequest().authenticated()
                 )
+
+                .headers(headers ->
+                        headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable))
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
