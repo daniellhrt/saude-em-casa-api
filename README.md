@@ -1,89 +1,97 @@
 # 🩺 Saúde em Casa API
 
-<img src="logo.png" alt="Logo Saúde em Casa" width="250" />
+<p align="center">
+  <img src="logo.png" alt="Logo Saúde em Casa" width="250" />
+</p>
 
-Uma plataforma de agendamento de serviços de enfermagem domiciliar, conectando clientes a profissionais de saúde de forma segura e eficiente, no estilo Uber/iFood.
+<p align="center">
+  <img src="https://img.shields.io/badge/Java-21-orange" alt="Java 21" />
+  <img src="https://img.shields.io/badge/Spring%20Boot-3%2B-brightgreen" alt="Spring Boot 3+" />
+  <img src="https://img.shields.io/badge/JWT-Security-blue" alt="JWT Security" />
+  <img src="https://img.shields.io/badge/Gradle-Build Tool-02303A" alt="Gradle" />
+  <img src="https://img.shields.io/badge/Database-H2-informational" alt="H2 Database" />
+</p>
 
----
-
-### 🚀 Stack de Tecnologias
-
-Esta aplicação foi desenvolvida utilizando as seguintes tecnologias:
-
-* **Linguagem:** Java 21
-* **Framework:** Spring Boot 3+
-* **Banco de Dados:** H2 Database (em memória para desenvolvimento)
-* **Segurança:** Spring Security, JWT (JSON Web Tokens)
-* **Build Tool:** Gradle
-* **Ambiente de Desenvolvimento:** IntelliJ IDEA
+> Plataforma de agendamento de serviços de enfermagem domiciliar, conectando clientes a profissionais de saúde de forma segura e eficiente — no estilo **Uber/iFood**.
 
 ---
 
-### ✅ Sprint 1: Autenticação e Segurança (Concluída)
+## 📑 Sumário
 
-Nesta primeira fase, o foco foi estabelecer uma base sólida e segura para a API. As seguintes funcionalidades foram implementadas:
-
-* **Sistema de Autenticação:** Registro de novos usuários (Clientes e Profissionais) e login.
-* **Segurança com JWT:** Implementação de um fluxo de autenticação via JWT, garantindo que apenas usuários autenticados possam acessar rotas protegidas.
-* **Mapeamento de Dados:** Modelagem e persistência de dados dos usuários com JPA e Hibernate.
-* **Boas Práticas:** Utilização de DTOs (Records), tratamento de exceções global e uma arquitetura em camadas.
-
----
-### ✅ Sprint 2: Gestão de Serviços e Agendamentos (Concluída)
-
-Nesta sprint, o foco foi na implementação da lógica central da plataforma, permitindo que clientes solicitem serviços e profissionais gerenciem o fluxo de atendimento. As seguintes funcionalidades foram implementadas:
-
-* **Modelagem de Dados:** Criação das entidades `Servico` e `Agendamento` para representar o catálogo de serviços e as solicitações de atendimento.
-* **Fluxo de Agendamento:** Lógica completa para criar, aceitar e encerrar agendamentos. A entidade `Agendamento` agora possui um ciclo de vida (`PENDENTE`, `CONFIRMADO`, `CONCLUIDO`).
-* **API de Listagem:** Endpoint para listar todos os serviços disponíveis na plataforma.
-* **API de Gestão:** Endpoints para que clientes solicitem agendamentos e profissionais aceitem ou encerrem o atendimento.
-* **Boas Práticas:** Uso de DTOs de Requisição e Resposta para desacoplar a API das entidades do banco de dados, resolvendo problemas de serialização e garantindo um fluxo de dados limpo.
+- [🚀 Stack de Tecnologias](#-stack-de-tecnologias)
+- [✅ Sprint 1 — Autenticação e Segurança](#-sprint-1--autenticação-e-segurança-concluída)
+- [✅ Sprint 2 — Gestão de Serviços e Agendamentos](#-sprint-2--gestão-de-serviços-e-agendamentos-concluída)
+- [🔑 Endpoints da API](#-endpoints-da-api)
+- [⚙️ Como Rodar o Projeto](#️-como-rodar-o-projeto)
+- [🛣️ Próximos Passos (Roadmap)](#️-próximos-passos-roadmap)
 
 ---
 
-### 🔑 Endpoints da API
+## 🚀 Stack de Tecnologias
 
-#### Autenticação
-* `POST /auth/register`
-    * **Descrição:** Registra um novo `CLIENTE` ou `PROFISSIONAL`.
-    * **Exige autenticação:** Não
-* `POST /auth/login`
-    * **Descrição:** Autentica um usuário e retorna um JWT para uso nas próximas requisições.
-    * **Exige autenticação:** Não
-
-#### Serviços e Agendamentos
-* `GET /servicos`
-    * **Descrição:** Retorna a lista completa de serviços disponíveis.
-    * **Exige autenticação:** Sim
-* `GET /agendamentos/pendentes`
-    * **Descrição:** Retorna a lista de todos os agendamentos com o status `PENDENTE`.
-    * **Exige autenticação:** Sim
-* `POST /agendamentos`
-    * **Descrição:** Cria um novo agendamento com o status `PENDENTE`.
-    * **Exige autenticação:** Sim
-* `PATCH /agendamentos/aceitar/{id}`
-    * **Descrição:** Altera o status de um agendamento para `CONFIRMADO` e associa um profissional.
-    * **Exige autenticação:** Sim
-* `PATCH /agendamentos/encerrar/{id}`
-    * **Descrição:** Altera o status de um agendamento para `CONCLUIDO`.
-    * **Exige autenticação:** Sim
+- **Linguagem:** Java 21
+- **Framework:** Spring Boot 3+
+- **Banco de Dados:** H2 Database (em memória para desenvolvimento)
+- **Segurança:** Spring Security, JWT (JSON Web Tokens)
+- **Build Tool:** Gradle
+- **IDE:** IntelliJ IDEA
 
 ---
 
-### ⚙️ Como Rodar o Projeto
+## ✅ Sprint 1 — Autenticação e Segurança (Concluída)
 
-1.  **Clone o repositório:** `git clone [URL_DO_REPOSITORIO]`
-2.  **Abra o projeto:** Importe o projeto no IntelliJ IDEA como um projeto Gradle.
-3.  **Configure o arquivo `application.properties`:** Adicione a chave secreta para o JWT e as configurações do H2.
-4.  **Execute a aplicação:** Rode a classe `SaudeEmCasaApplication.java`.
-5.  **Acesse o console do banco de dados (H2):** `http://localhost:8080/h2-console`
+- **Sistema de Autenticação:** Registro de novos usuários (`CLIENTE` e `PROFISSIONAL`) e login.
+- **Segurança com JWT:** Apenas usuários autenticados acessam rotas protegidas.
+- **Mapeamento de Dados:** Persistência com JPA + Hibernate.
+- **Boas Práticas:** DTOs (Records), tratamento global de exceções, arquitetura em camadas.
 
 ---
 
-### 🛣️ Próximos Passos (Roadmap)
+## ✅ Sprint 2 — Gestão de Serviços e Agendamentos (Concluída)
 
-A próxima sprint será focada em funcionalidades de visualização para o profissional e o cliente:
+- **Modelagem de Dados:** Entidades `Servico` e `Agendamento` para catálogo e solicitações.
+- **Fluxo de Agendamento:** Criar, aceitar e encerrar (`PENDENTE`, `CONFIRMADO`, `CONCLUIDO`).
+- **APIs:**
+    - Listagem de serviços disponíveis.
+    - Solicitação e gestão de agendamentos.
+- **Boas Práticas:** DTOs de requisição e resposta para desacoplamento e fluxo limpo.
 
-* Endpoint para o profissional visualizar os agendamentos que ele aceitou.
-* Endpoint para o cliente visualizar o status de seus próprios agendamentos.
-* Implementação de filtros e paginação para as listagens.
+---
+
+## 🔑 Endpoints da API
+
+### 🔐 Autenticação
+| Método | Endpoint          | Descrição                                                  | Autenticação |
+|--------|-------------------|------------------------------------------------------------|--------------|
+| POST   | `/auth/register`  | Registra um novo **CLIENTE** ou **PROFISSIONAL**           | ❌ Não       |
+| POST   | `/auth/login`     | Autentica e retorna um token JWT                           | ❌ Não       |
+
+### 📋 Serviços e Agendamentos
+| Método | Endpoint                          | Descrição                                                                 | Autenticação |
+|--------|------------------------------------|---------------------------------------------------------------------------|--------------|
+| GET    | `/servicos`                        | Lista todos os serviços disponíveis                                       | ✅ Sim       |
+| GET    | `/agendamentos/pendentes`          | Lista agendamentos com status `PENDENTE`                                  | ✅ Sim       |
+| POST   | `/agendamentos`                    | Cria novo agendamento (`PENDENTE`)                                        | ✅ Sim       |
+| PATCH  | `/agendamentos/aceitar/{id}`       | Altera status para `CONFIRMADO` e associa profissional                    | ✅ Sim       |
+| PATCH  | `/agendamentos/encerrar/{id}`      | Altera status para `CONCLUIDO`                                            | ✅ Sim       |
+
+---
+
+## ⚙️ Como Rodar o Projeto
+
+```bash
+# 1️⃣ Clone o repositório
+git clone [URL_DO_REPOSITORIO]
+
+# 2️⃣ Abra no IntelliJ IDEA como projeto Gradle
+
+# 3️⃣ Configure application.properties
+#    - Adicione chave secreta para JWT
+#    - Configure acesso ao H2
+
+# 4️⃣ Rode a aplicação
+./gradlew bootRun
+# ou execute a classe principal: SaudeEmCasaApplication.java
+
+# 5️⃣ Acesse o console H2
+http://localhost:8080/h2-console
